@@ -3,77 +3,180 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gyan jyoti | portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Gyan Jyoti | ML & Fullstack Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /* --- Premium Dark Theme & Typography --- */
     :root {
-      --primary-color: #4e54c8;
-      --accent-color: #8f94fb;
-      --bg-color: #f9f9f9;
-      --text-color: #333;
+      --primary-color: #007bff; /* Deep Blue - Professional and authoritative */
+      --accent-color: #ffc107; /* Gold/Amber - Used sparingly for high-impact highlights */
+      --bg-color: #0d1117; /* Very Dark, GitHub-inspired background */
+      --card-bg-color: #161b22; /* Slightly lighter dark for components */
+      --text-color: #c9d1d9; /* Muted White/Light Gray */
+      --secondary-text-color: #8b949e; /* Muted text for descriptions */
+      --border-color: #30363d; /* Subtle border for separation */
+      --font-family-header: 'Playfair Display', serif;
+      --font-family-main: 'Lato', sans-serif;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-family-main);
     }
 
     body {
       background: var(--bg-color);
       color: var(--text-color);
-      line-height: 1.6;
+      line-height: 1.7;
+      transition: background 0.5s, color 0.5s;
     }
 
+    /* --- Header & Hero Section --- */
     header {
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--card-bg-color) 0%, var(--bg-color) 100%);
       color: white;
-      padding: 40px 20px;
+      padding: 80px 20px;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative; /* Needed for absolute positioning of particles */
+      overflow: hidden; /* Keep particles contained */
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0; /* Behind the content */
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
+      position: relative; /* To ensure it's on top of particles */
+      z-index: 1;
+    }
+
+    /* This container will now hold the gradient border */
+    .header-content > img {
+      padding: 4px; /* This creates the space for the border */
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+      transition: transform 0.3s ease-in-out;
     }
 
     header img {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid white;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
     }
 
     header h1 {
-      margin-top: 15px;
-      font-size: 2rem;
+      margin-top: 25px;
+      font-size: 3rem;
+      font-family: var(--font-family-header);
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-color);
     }
 
     header h3 {
+      /* The typing text (role) */
       font-weight: 400;
-      color: #ddd;
+      font-size: 1.2rem;
+      color: var(--secondary-text-color);
+      margin-top: 5px;
+      margin-bottom: 15px; 
     }
 
+    header p.tagline { /* Targeted the new class */
+        font-size: 1.15rem;
+        font-weight: 400;
+        color: var(--secondary-text-color);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.4;
+    }
+
+    header p.tagline strong {
+        color: var(--accent-color); /* Highlight key technologies */
+        font-weight: 700;
+    }
+    
     header p span#typed-role {
-      color: #fff;
-      font-weight: bold;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-style: italic;
     }
 
+    /* --- General Layout & Section Styling --- */
     .container {
       max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
+      margin: 50px auto;
+      padding: 0 25px;
     }
 
     .section {
-      margin-bottom: 40px;
+      margin-bottom: 60px;
+      padding: 30px 40px;
+      background: var(--card-bg-color);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(30px);
+      border: 1px solid var(--border-color);
     }
 
     .section h2 {
       color: var(--primary-color);
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 8px;
-      margin-bottom: 15px;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .header-text {
+      max-width: 600px;
+    }
+
+    .header-text h1, .header-text h3, .header-text p {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: text-fade-in 0.8s forwards;
+      animation-delay: 0.2s;
+    }
+    .header-text h3 { animation-delay: 0.4s; }
+    .header-text p { animation-delay: 0.6s; }
+    .section p {
+        color: var(--secondary-text-color);
+    }
+
+    /* --- Skills Section: Categorized/Tiered Styling --- */
+    .skills-category {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    .skills-category h3 {
+        font-size: 1.3rem;
+        color: var(--text-color);
+        margin-bottom: 15px;
+        border-left: 4px solid var(--accent-color);
+        padding-left: 10px;
     }
 
     ul.skills {
@@ -84,36 +187,94 @@
     }
 
     ul.skills li {
-      background: var(--accent-color);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 20px;
+      background: var(--border-color);
+      color: var(--text-color);
+      padding: 8px 16px;
+      border-radius: 4px;
       font-size: 0.9rem;
-      transition: background 0.3s, transform 0.3s;
-      cursor: pointer;
+      font-weight: 400;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      cursor: help;
+      border: 1px solid transparent;
+    }
+    
+    ul.skills li:hover {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
     }
 
-    ul.skills li:hover {
+    /* --- Projects Section --- */
+    .filters {
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filters button {
+      background: var(--card-bg-color);
+      color: var(--primary-color);
+      padding: 10px 20px;
+      border: 1px solid var(--primary-color);
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .filters button:hover {
       background: var(--primary-color);
-      transform: scale(1.1);
+      color: white;
+    }
+
+    .filters button.active {
+      background: var(--accent-color);
+      color: var(--bg-color);
+      border-color: var(--accent-color);
     }
 
     .project {
-      background: white;
-      border-left: 5px solid var(--primary-color);
-      padding: 15px 20px;
+      background: var(--bg-color); /* Contrast from section card */
+      border-left: 4px solid var(--accent-color);
+      padding: 20px 25px;
       margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: border-left-color 0.3s;
       opacity: 0;
       transform: translateY(30px);
+    }
+    
+    .project:hover {
+        border-left-color: var(--primary-color);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    
+    .project h3 {
+        color: var(--text-color);
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 1.2rem;
     }
 
     .project a {
       color: var(--primary-color);
       text-decoration: none;
+      font-weight: 400;
+      margin-top: 10px;
+      display: inline-block;
+      transition: color 0.3s;
+      border-bottom: 1px dotted transparent;
     }
 
+    .project a:hover {
+      color: var(--accent-color);
+      border-bottom: 1px dotted var(--accent-color);
+    }
+    
     .project[data-category] {
       display: none;
     }
@@ -122,282 +283,461 @@
       display: block;
     }
 
-    .filters {
-      margin-bottom: 20px;
+    /* --- Timeline & Experience Enhancements --- */
+    .timeline, .certifications, .Experience {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .timeline li, .certifications li, .Experience li {
+        padding: 12px 0 12px 25px;
+        position: relative;
+        border-left: 1px dashed var(--border-color); /* Dashed line for professional look */
+        margin-left: 5px;
+        color: var(--secondary-text-color);
+    }
+    
+    .timeline li:last-child, .certifications li:last-child, .Experience li:last-child {
+        border-left: none;
     }
 
-    .filters button {
-      margin-right: 10px;
-      background: var(--primary-color);
-      color: white;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.3s;
+    .timeline li::before, .certifications li::before, .Experience li::before {
+      content: "\f111"; /* Solid circle icon */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--primary-color);
+      position: absolute;
+      left: -8px; /* Adjusted position for the dot */
+      top: 14px;
+      font-size: 0.8rem;
+      background: var(--card-bg-color);
+      padding: 0 5px;
+    }
+    
+    .timeline li strong {
+        color: var(--text-color);
+        font-weight: 700;
+        display: block; /* New line for title/year */
+    }
+    
+    .Experience li .role {
+        color: var(--accent-color);
+        font-weight: 600;
+        display: block;
+        font-size: 1.1rem;
     }
 
-    .filters button.active {
-      background: var(--accent-color);
+    /* --- Contact & Footer --- */
+    .contact p {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+    
+    .contact p a {
+      color: var(--primary-color);
     }
 
-    .contact p, .contact a {
-      margin: 5px 0;
-      color: var(--text-color);
-      text-decoration: none;
+    .socials {
+      margin-top: 20px;
     }
 
     .socials a {
-      margin-right: 15px;
+      margin-right: 25px;
+      color: var(--text-color);
+      font-size: 2rem;
+      transition: color 0.3s;
+    }
+
+    .socials a:hover {
       color: var(--primary-color);
-      font-size: 1.5rem;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: #eee;
-      font-size: 0.9rem;
+      padding: 30px;
+      background: var(--card-bg-color);
+      color: var(--secondary-text-color);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
     }
 
-    @media (max-width: 600px) {
-      ul.skills {
-        flex-direction: column;
+    @keyframes text-fade-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    .timeline, .certifications, .Experience {
-  list-style: none;
-  padding-left: 20px;
-  line-height: 1.8;
-}
-.timeline li::before, .certifications li::before, .Experience li::before {
-  content: "• ";
-  color: var(--primary-color);
-  font-weight: bold;
-}
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      .container {
+        padding: 0 15px;
+      }
+      .section {
+          padding: 20px;
+      }
+      .filters {
+          justify-content: center;
+      }
+    }
 
-
-
+    @media (min-width: 769px) {
+      .header-content {
+        flex-direction: row;
+        text-align: left;
+        gap: 40px;
+        max-width: 1000px;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="passportphoto.jpg" alt="Gyan jyoti">
-    <h1>Gyan Jyoti</h1>
-    <h3><span id="typed-role"></span></h3>
-    <p>An ML Enthusiast who loves creating different ML models</p>
+    <div id="particles-js"></div>
+    <div class="header-content">
+      <img src="photo.jpg" alt="Gyan Jyoti">
+      <div class="header-text">
+        <h1>Gyan Jyoti</h1>
+        <h3><span id="typed-role"></span></h3> 
+        <p class="tagline">Bridging **Machine Learning** and practical **Full-Stack** development to solve real-world problems.</p>
+      </div>
+    </div>
   </header>
 
   <div class="container">
+    
     <section class="section about">
-      <h2>About Me</h2>
-      <p>Hi! I'm Gyan, a BCA student passionate about front-end development, back-end development, and also about ML and AI. I love designing user-friendly responsive websites, strong backends, new useful AI/ML models, and exploring new technologies.</p>
+      <h2><i class="fas fa-user-tie"></i> Profile Summary</h2>
+      <p>Hi! I'm Gyan, a BCA student highly focused on building robust solutions across the technology stack. My expertise lies in **Machine Learning (ML) and Artificial Intelligence (AI)**, complemented by strong capabilities in **Full-Stack Development**. I specialize in designing user-centric, responsive applications and implementing efficient, high-performance ML models. I thrive on exploring new technologies and solving complex computational challenges.</p>
     </section>
 
-      <section id="skills" class="section skills">
-      <h2>Skills</h2>
-      <ul class="skills">
-        <li title="Proficient">HTML</li>
-        <li title="Proficient">CSS</li>
-        <li title="Intermediate">JavaScript</li>
-        <li title="Intermediate">Java</li>
-        <li title="Proficient">Responsive Design</li>
-        <li title="Advanced">Python</li>
-        <li title="Intermediate">Django</li>
-        <li title="Proficient">Database</li>
-        <li title="Learning">Responsive AI</li>
-        <li title="Learning">Large Language Models</li>
-        <li title="Proficient">Matplotlib</li>
-        <li title="Proficient">NumPy</li>
-        <li title="Proficient">Pandas</li>
-        <li title="Intermediate">TensorFlow</li>
-        <li title="Intermediate">Flask</li>
-        <li title="Beginner">PyTorch</li>
-        <li title="Proficient">Scikit-Learn</li>
-      </ul>
+    <section id="skills" class="section skills-container">
+      <h2><i class="fas fa-screwdriver-wrench"></i> Core Expertise</h2>
+      
+      <div class="skills-category">
+          <h3>Machine Learning & Data Science</h3>
+          <ul class="skills">
+            <li title="Advanced">Python</li>
+            <li title="Proficient">Scikit-Learn</li>
+            <li title="Intermediate">TensorFlow</li>
+            <li title="Beginner">PyTorch</li>
+            <li title="Proficient">NumPy</li>
+            <li title="Proficient">Pandas</li>
+            <li title="Proficient">Matplotlib</li>
+            <li title="Learning">Responsive AI</li>
+            <li title="Learning">Large Language Models</li>
+          </ul>
+      </div>
+      <div class="skills-category">
+          <h3>Backend</h3>
+          <ul class="skills">
+            <li title="Advanced">Python</li>
+            <li title="Proficient">Django</li>
+            <li title="Beginner">Flask</li>
+            <li title="Beginner">PHP</li>
+            <li title="Proficient">xampp</li>
+            <li title="Proficient">C++</li>
+            <li title="Proficient">C</li>
+            <li title="Learning">java</li>
+            <li title="Learning">Node js</li>
+            <li title="Learning">My SQL</li>
+            <li title="Learning">postman</li>
+          </ul>
+      </div>
+
+      <div class="skills-category">
+          <h3>Web Development & Frontend</h3>
+          <ul class="skills">
+            <li title="Proficient">HTML</li>
+            <li title="Proficient">CSS</li>
+            <li title="Intermediate">JavaScript</li>
+            <li title="Intermediate">Java</li>
+            <li title="Intermediate">Django</li>
+            <li title="Intermediate">Flask</li>
+            <li title="Proficient">Database (SQL)</li>
+            <li title="Proficient">Responsive Design</li>
+          </ul>
+      </div>
     </section>
-
-
-
-
-
-
 
     <section class="section projects">
-      <h2>Projects</h2>
+      <h2><i class="fas fa-rocket"></i> Portfolio & Key Projects</h2>
       <div class="filters">
         <button class="active" onclick="filterProjects('all', this)">All</button>
         <button onclick="filterProjects('frontend', this)">Frontend</button>
         <button onclick="filterProjects('backend', this)">Backend</button>
-        <button onclick="filterProjects('fullstack', this)">fullstack</button>
-        <button onclick="filterProjects('ML', this)">ML</button>
+        <button onclick="filterProjects('fullstack', this)">Fullstack</button>
+        <button onclick="filterProjects('ML', this)">ML / AI</button>
       </div>
+      
+      <div class="project show" data-category="ML">
+        <h3>Credit Scoring Model</h3>
+        <p>A classification-based **ML model** developed to predict individual creditworthiness and risk assessment. Utilizes advanced feature engineering and evaluation metrics.</p>
+        <a href="https://github.com/I-G-J/codealpha_task1.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+      
+      <div class="project show" data-category="fullstack">
+        <h3>Museum Ticket Booking System (Chat Bot Integration)</h3>
+        <p>A comprehensive online booking system featuring a seamless **chat bot interface** for availability checks and secure ticket confirmation. Built for high user accessibility.</p>
+        <a href="https://github.com/I-G-J/Indian-Museum-ticket-booking-system-via-chat-Bot.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+      <div class="project show" data-category="fullstack">
+        <h3>Sweet Bliss cafe management system</h3>
+        <p>A comprehensive online booking system featuring a seamless **chat bot interface** for availability checks and secure ticket confirmation. Built for high user accessibility.</p>
+        <a href="https://github.com/I-G-J/sweetbliss-cafe-website-Dynamic_duo.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+      
+      <div class="project show" data-category="ML">
+        <h3>Handwriting Recognition Preprocessing Pipeline</h3>
+        <p>Focus on data preparation for the IAM Dataset, involving image resizing, normalization, and efficient data loading crucial for training deep learning **OCR models**.</p>
+        <a href="https://github.com/I-G-J/codealpha_task2.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+      
+      <div class="project show" data-category="backend">
+        <h3>Flappy Bird Game (Pygame)</h3>
+        <p>A classic Flappy Bird implementation demonstrating logic design and real-time rendering using the **Python Pygame** library.</p>
+        <a href="https://github.com/I-G-J/flappy-bird.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+
+      <div class="project show" data-category="ML">
+        <h3>Disease Prediction Model</h3>
+        <p>Classification model utilizing patient data and diagnostic features to predict disease likelihood, showcasing application of supervised learning in healthcare.</p>
+        <a href="https://github.com/I-G-J/codealpha_task2.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+      
+      <div class="project show" data-category="frontend">
+        <h3>Image Gallery Web Application</h3>
+        <p>A responsive, modern web application utilizing **HTML, CSS, and JavaScript** for dynamic image presentation and smooth user experience.</p>
+        <a href="https://github.com/I-G-J/Image-gallery.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+
       <div class="project show" data-category="frontend">
         <h3>Calculator</h3>
         <p>A modern and responsive Calculator to perform simple arithmetic operations like addition, subtraction, multiplication, and division.</p>
-        <a href="https://github.com/I-G-J/calculator.git" target="_blank">View Project</a>
-      </div>
-      <div class="project show" data-category="frontend">
-        <h3>Image Gallery</h3>
-        <p>The Image Gallery is a simple and responsive web-based application. Built using HTML, CSS, and JavaScript.</p>
-        <a href="https://github.com/I-G-J/Image-gallery.git" target="_blank">View Project</a>
+        <a href="https://github.com/I-G-J/calculator.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
       </div>
       <div class="project show" data-category="backend">
-        <h3>flappy-bird</h3>
-        <p>A simple and fun implementation of the classic Flappy Bird game using Python and Pygame.</p>
-        <a href="https://github.com/I-G-J/flappy-bird.git" target="_blank">View Project</a>
-      </div>
-      <div class="project show" data-category="backend">
-        <h3>Quiz Game</h3>
+        <h3>Quiz Game (C++)</h3>
         <p>A console-based quiz game developed in C++ that challenges players across multiple levels</p>
-        <a href="https://github.com/I-G-J/Quiz-game-.git" target="_blank">View Project</a>
+        <a href="https://github.com/I-G-J/Quiz-game-.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
       </div>
       <div class="project show" data-category="fullstack">
-        <h3>snake game in python</h3>
+        <h3>Snake Game in Python</h3>
         <p>A snake game in python using pygame</p>
-        <a href="https://github.com/I-G-J/snake-game-in-python.git" target="_blank">View Project</a>
+        <a href="https://github.com/I-G-J/snake-game-in-python.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
       </div>
+
+      <div class="project show" data-category="frontend">
+        <h3>Memory Flip</h3>
+        <p>A responsive, modern web application utilizing **HTML, CSS, and JavaScript** for dynamic flip game experience.</p>
+        <a href="https://github.com/I-G-J/-Memory-Flip-Card-Game-PC-.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
+      </div>
+      
+
       <div class="project show" data-category="fullstack">
-      <h3>Indian Museum ticket booking system via chat Bot Public</h3>
-      <p>An online ticket booking system for Indian museums that allows visitors to check availability, book tickets, and receive booking confirmations with ease. </p>
-      <a href="https://github.com/I-G-J/Indian-Museum-ticket-booking-system-via-chat-Bot.git" target="_blank">View Project</a>
-      </div>
-      <div class="project show" data-category="ML">
-      <h3>Credit Scoring Model</h3>
-      <p>a simple ai model that predicts credit score of individuals Credit Scoring Model  Classification Based This project focuses on developing a credit scoring model using classification algorithms to predict creditworthiness.  </p>
-      <a href="https://github.com/I-G-J/codealpha_task1.git" target="_blank">View Project</a>
-      </div>
-      <div class="project show" data-category="ML">
-      <h3>Handwriting Recognition using IAM Dataset</h3>
-      <p>Handwriting Recognition Preprocessing Pipeline This project prepares the IAM Handwriting Dataset for training a deep learning model to recognize handwritten English words. It includes image resizing, normalization, label vectorization, and efficient data loading using TensorFlow.   </p>
-      <a href="https://github.com/I-G-J/codealpha_task2.git" target="_blank">View Project</a>
-      </div>
-      <div class="project show" data-category="ML">
-      <h3>Disease Prediction Model</h3>
-      <p>This project is a Machine Learning-based model for predicting diseases based on patient data.This project uses classification algorithms to predict the likelihood of a disease based on input features.   </p>
-      <a href="https://github.com/I-G-J/codealpha_task2.git" target="_blank">View Project</a>
+        <h3>Rock Paper Scisscor game</h3>
+        <p>A responsive, modern web application utilizing **HTML, CSS, and JavaScript** for dynamic flip game experience.</p>
+        <a href="https://github.com/I-G-J/Rock-Paper-Scisscor-game.git" target="_blank">View Repository <i class="fas fa-code-branch"></i></a>
       </div>
       
     </section>
-   
 
+    <section id="Experince" class="section Experince">
+      <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+      <ul class="Experience">
+        <li>
+            <span class="role">Machine Learning Intern</span>
+            <span class="company">Prodigy Info-Tech</span> (July 2025)
+        </li>
+        <li>
+            <span class="role">Machine Learning Intern</span>
+            <span class="company">CodeAlpha</span> (May - June 2025)
+        </li>
 
+        <li>
+            <span class="role">Intern data scientist </span>
+            <span class="company">cognify </span> (June 2025)
+        </li>
+
+        <li>
+            <span class="role">Full Stack Web Developer Intern </span>
+            <span class="company">CITC The Hub of IT </span> (july-september 2025)
+        </li>
+
+        <li>
+            <span class="role">Full Stack Development Intern </span>
+            <span class="company">CNEAR </span> (October 2025)
+        </li>
+      </ul>
+    </section>
 
     <section id="education" class="section education">
-      <h2>Education Timeline</h2>
+      <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
       <ul class="timeline">
-        <li>2021 — Secondary Education @ DAV Public School, Chatra</li>
-        <li>2023 — Higher Secondary @ DAV Public School, Hazaribagh</li>
-        <li>2023–2026 — BCA @ RKDF University, Ranchi</li>
+        <li>
+            <strong>2023–2026</strong>
+            <p>BCA @ RKDF University, Ranchi</p>
+        </li>
+        <li>
+            <strong>2023</strong>
+            <p>Higher Secondary @ DAV Public School, Hazaribagh</p>
+        </li>
+        <li>
+            <strong>2021</strong>
+            <p>Secondary Education @ DAV Public School, Chatra</p>
+        </li>
       </ul>
     </section>
 
- <section id="certifications" class="section certifications">
-      <h2>Certifications & Achievements</h2>
+    <section id="certifications" class="section certifications">
+      <h2><i class="fas fa-award"></i> Certifications & Training</h2>
       <ul class="certifications">
-        
-        <li>Generative ai foundation course by  apponix technologies. (2025)</li>
-        <li>power bi for Beginners by  simplylearn. (2025)</li>
+        <li>Generative AI Foundation Course by Apponix Technologies (2025)</li>
+        <li>Introduction to Large Language Models - Google</li>
+        <li>Introduction to Responsive AI - Google</li>
+        <li>Data Science - Mastering the Fundamentals - Scaler</li>
+        <li>Generative AI - Simplilearn</li>
+        <li>Power BI for Beginners by SimplyLearn (2025)</li>
         <li>100 Days of Code (Python) by CodeWithHarry</li>
-        <li>Machine Learning Internship - prodigy info-tech</li>
-        <li>data science - mastering the fundamentals - scaler</li>
-        <li>Generative ai - simplilearn</li>
-        <li>introduction to Generative ai-google </li>
-        <li>introduction to responsive ai-google </li>
-        <li>introduction to large language model -google </li>
+        <li>Full Stack Web Developer intern-CITC The Hub of IT (2025)</li>
+        <li>Hackathon winner at AAYAM Tech fest 2025</li>
+        <li>Introduction to machine learning concepts - Microsoft</li>
+        <li>Microsoft Security Copilot-Microsoft</li>
+        <li>Introduction to Generative AI Concepts - Microsoft</li>
+        
+        
       </ul>
     </section>
-    <section id="Experince" class="section Experince">
-      <h2>Experience</h2>
-      <ul class="Experience">
-        <li>CodeAlpha Machine Learning Internship (may-june 2025)</li>
-        <li>Machine Learning Internship - prodigy info-tech(july 2025)</li>
-      </ul>
-    </section>
-     
-
-
-
-
-
+    
     <section class="section contact">
-      <h2>Contact</h2>
+      <h2><i class="fas fa-headset"></i> Get In Touch</h2>
       <p>Email: <a href="mailto:gyanjyoti62436@gmail.com">gyanjyoti62436@gmail.com</a></p>
       <p>Phone: 8252149353</p>
       <div class="socials">
-        <a href="https://www.linkedin.com/in/gyan-jyoti-12991730a"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/I-G-J"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/gyan-jyoti-12991730a" title="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/I-G-J" title="GitHub Repositories"><i class="fab fa-github"></i></a>
       </div>
     </section>
   </div>
 
   <footer>
-    &copy; 2025 Gyan Jyoti. All rights reserved.
+    &copy; 2025 Gyan Jyoti | Developed for Professional Impact.
   </footer>
 
-
-
-
-  
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
     var typed = new Typed("#typed-role", {
-      strings: ["Machine Learning Engineer", "Frontend Developer", "Backend Developer",],
-      typeSpeed: 50,
-      backSpeed: 25,
+      strings: ["ML Engineer", "Full-Stack Developer", "AI Practitioner"],
+      typeSpeed: 40,
+      backSpeed: 20,
       loop: true
     });
   </script>
 
-     
-
+  <script>
+    tsParticles.load("particles-js", {
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
+          resize: true,
+        },
+        modes: {
+          repulse: {
+            distance: 100,
+            duration: 0.4,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: "#ffffff",
+        },
+        links: {
+          color: "#ffffff",
+          distance: 150,
+          enable: true,
+          opacity: 0.2,
+          width: 1,
+        },
+        collisions: {
+          enable: true,
+        },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: {
+            default: "bounce",
+          },
+          random: false,
+          speed: 1,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+            area: 800,
+          },
+          value: 80,
+        },
+        opacity: { value: 0.2 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 5 } },
+      },
+      detectRetina: true,
+    });
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script>
     gsap.registerPlugin(ScrollTrigger);
+    // General section fade-in animation
     gsap.utils.toArray('.section').forEach(section => {
       gsap.to(section, {
         opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 0.8, 
         scrollTrigger: {
           trigger: section,
-          start: "top 80%"
+          start: "top 85%"
         }
       });
     });
+    // Project card fade-in animation
     gsap.utils.toArray('.project').forEach(card => {
       gsap.to(card, {
         opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 0.8,
         scrollTrigger: {
           trigger: card,
-          start: "top 90%"
+          start: "top 95%"
         }
       });
     });
   </script>
 
-   
-
-
-
-
   <script>
     function filterProjects(category, button) {
       const projects = document.querySelectorAll(".project");
       const buttons = document.querySelectorAll(".filters button");
+      
+      projects.forEach(project => project.classList.remove("show"));
+
       buttons.forEach(btn => btn.classList.remove("active"));
       button.classList.add("active");
 
       projects.forEach(project => {
         if (category === "all" || project.dataset.category === category) {
           project.classList.add("show");
-        } else {
-          project.classList.remove("show");
         }
       });
     }
